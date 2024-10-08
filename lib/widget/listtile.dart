@@ -1,5 +1,6 @@
 import 'package:currency_convertor/const/color.dart';
 import 'package:currency_convertor/const/size.dart';
+import 'package:currency_convertor/const/width.dart';
 import 'package:currency_convertor/widget/textShow.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class ListTiles extends StatelessWidget {
       child: ListTile(
         tileColor: Colors.black,
         onTap: onTapTile,
-        contentPadding: EdgeInsets.only(left: 16.0),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         leading: Textshow(text: text, fontSize: 20),
         trailing: SizedBox(
           width: 200, // Control the width to avoid overflow
@@ -53,6 +54,7 @@ class ListTiles extends StatelessWidget {
                   ),
                 ),
               ),
+              Width(width: 10),
               Textshow(text: currencyCode, fontSize: 20),
               IconButton(
                 onPressed: onPressed,

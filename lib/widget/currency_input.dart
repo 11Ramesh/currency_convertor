@@ -1,5 +1,6 @@
 import 'package:currency_convertor/const/color.dart';
 import 'package:currency_convertor/const/size.dart';
+import 'package:currency_convertor/const/width.dart';
 import 'package:currency_convertor/widget/textShow.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +53,7 @@ class CurrencyInput extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 8.0), // Spacing between image and text
+              Width(width: 10),
               Textshow(text: currencyCode, fontSize: 20),
               IconButton(
                 onPressed: onPressed,
