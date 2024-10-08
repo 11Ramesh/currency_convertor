@@ -189,11 +189,14 @@ class _HomeState extends State<Home> {
                 return CircularProgressIndicator();
               }),
               Height(height: ScreenUtil.screenHeight * 0.02),
-              Button(
-                text: '+ Add Convertor',
-                onPressed: () {
-                  showBoxCurrency(context, "Convert", "");
-                },
+              Hero(
+                tag: 'button',
+                child: Button(
+                  text: '+ Add Convertor',
+                  onPressed: () {
+                    showBoxCurrency(context, "Convert", "");
+                  },
+                ),
               )
             ],
           ),
@@ -217,72 +220,75 @@ class _HomeState extends State<Home> {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             searchFocusNode.requestFocus();
           });
-          return AlertDialog(
-            backgroundColor: const Color.fromARGB(255, 57, 57, 57),
-            title: Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Textshow(
-                    text: text + " Currency :",
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Height(height: 10),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: CustomTextFormField(
-                    prefixIcon: true,
-                    filled: true,
-                    controller: _controller1,
-                    keyboardType: TextInputType.text,
-                    width: ScreenUtil.screenWidth * 0.8,
-                    hintText: 'Search Currency',
-                    onChanged: (value) {
-                      setState(() {
-                        final input = value.toUpperCase();
-                        // Filter the currency data based on input
-                        if (input.isNotEmpty) {
-                          filteredEntries = currencyData!.entries
-                              .where((entry) => entry.key.startsWith(input))
-                              .map((entry) =>
-                                  MapEntry(entry.key, entry.value.toString()))
-                              .toList();
-                        } else {
-                          // Show all entries when the input is empty
-                          filteredEntries = currencyData!.entries
-                              .map((entry) =>
-                                  MapEntry(entry.key, entry.value.toString()))
-                              .toList();
-                        }
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            content: Container(
-              width: ScreenUtil.screenWidth * 0.5,
-              height: ScreenUtil.screenHeight * 0.5,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: filteredEntries.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Textshow(
-                      text: filteredEntries[index].key,
+          return Hero(
+            tag: "button",
+            child: AlertDialog(
+              backgroundColor: const Color.fromARGB(255, 57, 57, 57),
+              title: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Textshow(
+                      text: text + " Currency :",
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
-                    onTap: () {
-                      // Pass back the selected currency code
-                      Navigator.of(context).pop({
-                        "currencyCode": filteredEntries[index].key,
-                      });
-                    },
-                  );
-                },
+                  ),
+                  Height(height: 10),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: CustomTextFormField(
+                      prefixIcon: true,
+                      filled: true,
+                      controller: _controller1,
+                      keyboardType: TextInputType.text,
+                      width: ScreenUtil.screenWidth * 0.8,
+                      hintText: 'Search Currency',
+                      onChanged: (value) {
+                        setState(() {
+                          final input = value.toUpperCase();
+                          // Filter the currency data based on input
+                          if (input.isNotEmpty) {
+                            filteredEntries = currencyData!.entries
+                                .where((entry) => entry.key.startsWith(input))
+                                .map((entry) =>
+                                    MapEntry(entry.key, entry.value.toString()))
+                                .toList();
+                          } else {
+                            // Show all entries when the input is empty
+                            filteredEntries = currencyData!.entries
+                                .map((entry) =>
+                                    MapEntry(entry.key, entry.value.toString()))
+                                .toList();
+                          }
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              content: Container(
+                width: ScreenUtil.screenWidth * 0.5,
+                height: ScreenUtil.screenHeight * 0.5,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: filteredEntries.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Textshow(
+                        text: filteredEntries[index].key,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      onTap: () {
+                        // Pass back the selected currency code
+                        Navigator.of(context).pop({
+                          "currencyCode": filteredEntries[index].key,
+                        });
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           );

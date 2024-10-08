@@ -27,12 +27,12 @@ void main() async {
   await dotenv.load(fileName: ".env");
   await WidgetsFlutterBinding.ensureInitialized();
 
-  // runApp(const MyApp());
-
-  runApp(DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => const MyApp(),
-  ));
+  runApp(const MyApp());
+// run app in device preview
+  // runApp(DevicePreview(
+  //   enabled: !kReleaseMode,
+  //   builder: (context) => const MyApp(),
+  // ));
 }
 
 class MyApp extends StatelessWidget {
