@@ -237,7 +237,7 @@ class _HomeState extends State<Home> {
                     filled: true,
                     controller: _controller1,
                     keyboardType: TextInputType.text,
-                    width: ScreenUtil.screenWidth * 0.5,
+                    width: ScreenUtil.screenWidth * 0.8,
                     hintText: 'Search Currency',
                     onChanged: (value) {
                       setState(() {
